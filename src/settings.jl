@@ -247,8 +247,8 @@ effects: `autofix_names`, `error_on_conflict`, `suppress_warnings`, `allow_ambig
 """
 mutable struct ArgParseSettings
     prog::AbstractString
-    description::AbstractString
-    epilog::AbstractString
+    description::Union{AbstractString,Markdown.MD}
+    epilog::Union{AbstractString,Markdown.MD}
     usage::AbstractString
     version::AbstractString
     add_help::Bool
@@ -272,8 +272,8 @@ mutable struct ArgParseSettings
     function ArgParseSettings(;prog::AbstractString = Base.source_path() ≢ nothing ?
                                                           basename(Base.source_path()) :
                                                           "",
-                               description::AbstractString = "",
-                               epilog::AbstractString = "",
+                               description::Union{AbstractString,Markdown.MD} = "",
+                               epilog::Union{AbstractString,Markdown.MD} = "",
                                usage::AbstractString = "",
                                version::AbstractString = "Unspecified version",
                                add_help::Bool = true,
