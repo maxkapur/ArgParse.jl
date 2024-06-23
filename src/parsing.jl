@@ -380,7 +380,7 @@ function show_help(io::IO, settings::ArgParseSettings; exit_when_done = !isinter
     return
 end
 
-function show_message(io::IO, message::AbstractString, preformatted::Bool, width::Int)
+function show_message(io::IO, message::Union{AbstractString,Markdown.MD}, preformatted::Bool, width::Int)
     if !isempty(message)
         if preformatted
             print(io, message)
