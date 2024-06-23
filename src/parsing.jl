@@ -395,7 +395,10 @@ function show_message(io::IO, message::AbstractString, preformatted::Bool, width
 end
 
 function show_message(io::IO, message::Markdown.MD, preformatted::Bool, width::Int)
-    show_message(io, string_format(message), preformatted, width)
+    if !isempty(message)
+        println(io, string_format(message))
+        println(io)
+    end
 end
 
 show_version(settings::ArgParseSettings; kw...) = show_version(stdout, settings; kw...)
