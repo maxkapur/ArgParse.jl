@@ -83,8 +83,8 @@ This is the list of all available settings:
 * `dest_name` (default = auto-generated): the key which will be associated with the argument in the `Dict` object returned by
   `parse_args`. The auto-generation rules are explained in the [Argument names](@ref) section. Multiple arguments can share
   the same destination, provided their actions and types are compatible.
-* `help` (default = `""`): the help string which will be shown in the auto-generated help screen. It's a `String` which will
-  be automaticaly formatted; also, `arg_type` and `default` will be automatically appended to it if provided.
+* `help` (default = `""`): the help string which will be shown in the auto-generated help screen. It's a `String` or `Markdown.MD`
+  instance which will be automaticaly formatted; also, `arg_type` and `default` will be automatically appended to it if provided.
 * `metavar` (default = auto-generated): a token which will be used in usage and help screens to describe the argument syntax. For
   positional arguments, it will also be used as an identifier in all other messages (e.g. in reporting errors), therefore it must
   be unique. For optional arguments, if `nargs > 1` then `metavar` can be a `Vector` of `String`s of length `nargs`. The
