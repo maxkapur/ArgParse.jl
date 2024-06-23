@@ -43,3 +43,6 @@ macro defaults(opts, ex)
     exret
 end
 
+# Wrapper function to lower markdown strings REPL-printable representation
+string_format(s::Markdown.MD) = lstrip(repr("text/plain", s, context=:color=>true))
+string_format(s::AbstractString) = s

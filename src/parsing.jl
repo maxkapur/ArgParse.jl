@@ -380,7 +380,7 @@ function show_help(io::IO, settings::ArgParseSettings; exit_when_done = !isinter
     return
 end
 
-function show_message(io::IO, message::Union{AbstractString,Markdown.MD}, preformatted::Bool, width::Int)
+function show_message(io::IO, message::AbstractString, preformatted::Bool, width::Int)
     if !isempty(message)
         if preformatted
             print(io, message)
@@ -392,6 +392,10 @@ function show_message(io::IO, message::Union{AbstractString,Markdown.MD}, prefor
         end
         println(io)
     end
+end
+
+function show_message(io::IO, message::Markdown.MD, preformatted::Bool, width::Int)
+    show_message(io, string_format(message), preformatted, width)
 end
 
 show_version(settings::ArgParseSettings; kw...) = show_version(stdout, settings; kw...)
