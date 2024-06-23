@@ -11,6 +11,8 @@ function main(args)
         uses various Markdown features such as **strong text**, text with
         *emphasis*, `code snippets`, and math: ``y = mx + b``.
 
+        ## Subheading
+
         The following list should be numbered automatically:
 
         1. Here
