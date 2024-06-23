@@ -149,11 +149,10 @@ This is the list of general settings currently available:
 * `prog` (default = `""`): the name of the program, as displayed in the auto-generated help and
   usage screens. If left empty, the source file name will be used.
 * `description` (default = `""`): a description of what the program does, to be displayed in the
-  auto-generated help-screen, between the usage lines and the arguments description. If
-  `preformatted_description` is `false` (see below), it will be automatically formatted, but you can
-  still force newlines by using two consecutive newlines in the string, and manually control spaces
-  by using non-breakable spaces (the character `'\\ua0'`). May be a `String` such as or `Markdown.MD`
-  instance.
+  auto-generated help-screen, between the usage lines and the arguments description. May be a `String`
+  or a `Markdown.MD` instance. If `preformatted_description` is `false` (see below), it will be
+  automatically formatted, but you can still force newlines by using two consecutive newlines in the
+  string, and manually control spaces by using non-breakable spaces (the character `'\\ua0'`).
 * `preformatted_description` (default = `false`): disable automatic formatting of `description`.
   Has no effect if `description` is a `Markdown.MD` instance.
 * `epilog` (default = `""`): like `description`, but will be displayed at the end of the
