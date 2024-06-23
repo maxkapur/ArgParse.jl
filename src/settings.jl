@@ -295,6 +295,12 @@ mutable struct ArgParseSettings
                                exit_after_help::Bool = !isinteractive()
                                )
         fromfile_prefix_chars = check_prefix_chars(fromfile_prefix_chars)
+        if preformatted_description && description isa Markdown.MD
+            @warn "preformatted_epilog = true has no effect if epilog is a Markdown.MD instead of String"
+        end
+        if preformatted_epilog && epilog isa Markdown.MD
+            @warn "preformatted_epilog = true has no effect if epilog is a Markdown.MD instead of String"
+        end
         return new(
             prog, description, epilog, usage, version, add_help, add_version,
             help_width, help_alignment_width, fromfile_prefix_chars, autofix_names,
