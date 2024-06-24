@@ -43,6 +43,9 @@ macro defaults(opts, ex)
     exret
 end
 
-# Wrapper function to lower markdown strings REPL-printable representation
-string_format(s::Markdown.MD) = lstrip(repr("text/plain", s, context=:color=>true))
-string_format(s::AbstractString) = s
+# Wrapper function to lower markdown strings to REPL representation
+function string_format(s::Markdown.MD; width::Int)
+    context = IOContext(stdout, :color => true, :displaysize => (displaysize()[1], width))
+    lstrip(repr("text/plain", s; context=context))
+end
+string_format(s::AbstractString; width::Int) = TextWrap.wrap(s; width=width)

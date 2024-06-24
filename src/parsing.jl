@@ -396,7 +396,7 @@ end
 
 function show_message(io::IO, message::Markdown.MD, preformatted::Bool, width::Int)
     if !isempty(message)
-        println(io, string_format(message))
+        println(io, string_format(message; width=width))
         println(io)
     end
 end
