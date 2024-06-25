@@ -925,7 +925,10 @@ function add_arg_field!(settings::ArgParseSettings, name::ArgName; desc...)
     check_type(range_tester, Function, "range_tester must be a Function")
     check_type(dest_name, AbstractString, "dest_name must be an AbstractString")
     check_type(help, Union{AbstractString,Markdown.MD}, "help must be an AbstractString or Markdown.MD")
-    help = string_format(help; width = settings.help_width)
+    # Apply string_format() since we allow Markdown.MD in help text.
+    # Additionally, remove leading spaces inserted by repr("text/plain", help).
+    # See note in string_format().
+    help = Base.unindent(string_format(help; width = settings.help_width), 2)
     # Check metavar's type to be either an AbstractString or a
     # Vector{T<:AbstractString}
     metavar_error = "metavar must be an AbstractString or a Vector{<:AbstractString}"
