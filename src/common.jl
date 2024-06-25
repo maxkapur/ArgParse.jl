@@ -45,7 +45,17 @@ end
 
 # Wrapper function to lower markdown strings to REPL representation
 function string_format(s::Markdown.MD; width::Int)
-    context = IOContext(stdout, :color => true, :displaysize => (displaysize()[1], width))
-    lstrip(repr("text/plain", s; context=context))
+    buf = IOBuffer()
+    context = IOContext(buf, :color => true, :displaysize => (100, width))
+    repr("text/plain", s; context=context)
+
+    # NOTE: repr() above automatically indents the string by 2 spaces. We can
+    # remove the indentation using Base.unindent() as follows, but the results
+    # are inconsistent with :color => true enabled when s contains subheadings,
+    # because repr() inserts the ANSI escape code enabling the bold font
+    # *before* the leading two spaces.
+
+    # ansi_escaped = repr("text/plain", s; context=context)
+    # unindented = Base.unindent(ansi_escaped, 2)
 end
 string_format(s::AbstractString; width::Int) = TextWrap.wrap(s; width=width)
